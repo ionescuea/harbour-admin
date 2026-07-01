@@ -98,27 +98,64 @@ body {
   letter-spacing: 0.02em;
 }
 
-nav {
+.site-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem 1.25rem;
   align-items: center;
 }
 
-nav a {
+.site-nav a {
   color: var(--text-muted);
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
 }
 
-nav a:hover,
-nav a:focus-visible {
+.site-nav a:hover,
+.site-nav a:focus-visible {
   color: var(--accent);
 }
 
 .nav-cta {
   color: var(--accent) !important;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 1.15rem;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--accent);
+  border-radius: 1px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.site-header.nav-open .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.site-header.nav-open .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header.nav-open .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Hero */
@@ -658,12 +695,53 @@ nav a:focus-visible {
 
 /* Responsive */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-wrap: wrap;
   }
 
+  .nav-toggle {
+    display: flex;
+  }
+
+  .site-nav {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    padding: 0.5rem 0 0.75rem;
+    border-top: 1px solid var(--border);
+    margin-top: 0.25rem;
+  }
+
+  .site-header.nav-open .site-nav {
+    display: flex;
+  }
+
+  .site-nav a {
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .site-nav a:last-child {
+    border-bottom: none;
+    margin-top: 0.25rem;
+    padding: 0.85rem 1rem;
+    text-align: center;
+    background: var(--accent-soft);
+    border-radius: var(--radius);
+    border-bottom: none;
+  }
+
+  .site-nav a[aria-current="page"] {
+    color: var(--accent);
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 768px) {
   .logo-brand img {
     height: 2.75rem;
   }
@@ -715,7 +793,7 @@ nav a:focus-visible {
   margin: 1rem 0 0;
 }
 
-nav a[aria-current="page"] {
+.site-nav a[aria-current="page"] {
   color: var(--accent);
   font-weight: 600;
 }
