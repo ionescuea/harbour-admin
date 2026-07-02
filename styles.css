@@ -497,6 +497,13 @@ body {
   color: var(--accent);
 }
 
+.about-aside .aside-intro {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
 .about-aside h3:not(:first-child) {
   margin-top: 1.5rem;
 }
